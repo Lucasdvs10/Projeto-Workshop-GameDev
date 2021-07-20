@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControleJogador : MonoBehaviour
 {
 
+
     Rigidbody2D rig;
 
     [SerializeField]

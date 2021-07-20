@@ -53,18 +53,13 @@ public class Enemy : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(headPoint.position, headArea, playerLayer);
         Collider2D hitPlayer = Physics2D.OverlapCircle(collPoint.position, headArea, playerLayer);
 
-        if (hit != null)
+        if (hit != null && !hit.GetComponent<ControleDeVidas>().invulneravel)
         {
             health--;
             anim.SetTrigger("hit");
             hit.GetComponent<Rigidbody2D>().AddForce(Vector2.up * throwPlayerForce, ForceMode2D.Impulse);
         }
 
-        //é chamado quando escosta no player de frente
-        if (hitPlayer != null)
-        {
-
-        }
     }
 
     void Destroy()
@@ -80,9 +75,10 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //checa se está colidindo com algum obstáculo
-        if (collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == 8)
         {
             isRight = !isRight;
+            print("Virou");
         }
     }
 
